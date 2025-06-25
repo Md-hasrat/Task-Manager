@@ -17,7 +17,6 @@ const TaskListTable = ({ tableData }) => {
         }
     }
 
-
     const getPriorityColor = (priority) => {
         switch (priority) {
             case 'High':
@@ -31,37 +30,38 @@ const TaskListTable = ({ tableData }) => {
         }
     }
 
-
     return (
-        <div className="overflow-x-auto p-0 rounded-lg shadow-lg bg-white mt-3 border border-gray-100"> {/* Stronger shadow, softer border */}
+        <div className="overflow-x-auto p-0 rounded-lg shadow-lg bg-white mt-3 border border-gray-100">
             <table className="min-w-full">
-                <thead className="bg-gray-50 border-b border-gray-200"> {/* Lighter header background, subtle bottom border */}
+                <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
-                        <th className='py-4 px-6 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>Name</th> {/* Slightly reduced font-weight to semibold, consistent spacing */}
+                        <th className='py-4 px-6 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>Name</th>
                         <th className='py-4 px-6 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>Status</th>
                         <th className='py-4 px-6 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>Priority</th>
                         <th className='py-4 px-6 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider hidden md:table-cell'>Created on</th>
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100"> {/* Consistent, light row dividers */}
+                <tbody className="divide-y divide-gray-100">
                     {tableData.map((task, index) => (
-                        <tr key={index} className={
-                            index % 2 === 0
-                                ? 'bg-white hover:bg-gray-50 transition duration-200 ease-in-out'
-                                : 'bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out'
-                        }> {/* Alternating row colors with distinct hover states */}
-                            <td className='py-3.5 px-6 text-sm text-gray-700 max-w-xs overflow-hidden text-ellipsis whitespace-nowrap'>{task.title}</td> {/* Slightly adjusted vertical padding */}
-                            <td className='py-3.5 px-6'>
-                                <span className={`inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-medium ${getStatusColor(task.status)}`}> {/* Slightly larger badge padding, medium font weight */}
+                        // *** CORRECTION APPLIED HERE ***
+                        // All <td> elements are on the same line as the <tr>
+                        <tr
+                            key={index}
+                            className={
+                                index % 2 === 0
+                                    ? 'bg-white hover:bg-gray-50 transition duration-200 ease-in-out'
+                                    : 'bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out'
+                            }
+                        >
+                            <td className='py-3.5 px-6 text-sm text-gray-700 max-w-xs overflow-hidden text-ellipsis whitespace-nowrap'>{task.title}</td><td className='py-3.5 px-6'>
+                                <span className={`inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-medium ${getStatusColor(task.status)}`}>
                                     {task.status}
                                 </span>
-                            </td>
-                            <td className='py-3.5 px-6'>
+                            </td><td className='py-3.5 px-6'>
                                 <span className={`inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-medium ${getPriorityColor(task.priority)}`}>
                                     {task.priority}
                                 </span>
-                            </td>
-                            <td className='py-3.5 px-6 text-sm text-gray-600 hidden md:table-cell'>
+                            </td><td className='py-3.5 px-6 text-sm text-gray-600 hidden md:table-cell'>
                                 {moment(task.createdAt).format('DD MMM YYYY')}
                             </td>
                         </tr>
@@ -72,5 +72,4 @@ const TaskListTable = ({ tableData }) => {
     );
 }
 
-
-export default TaskListTable
+export default TaskListTable;
